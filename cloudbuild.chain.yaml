@@ -1,0 +1,24 @@
+# Simple chained build: AI_content -> Similarity -> Backend -> Frontend
+# Each step triggers the child directory build and does a minimal dependency check.
+steps:
+  - name: 'gcr.io/cloud-builders/gcloud'
+    id: 'Build & Deploy AI_content'
+    dir: 'AI_content'
+    args: ['builds', 'submit', '--config=cloudbuild.yaml', '.']
+
+  - name: 'gcr.io/cloud-builders/gcloud'
+    id: 'Build & Deploy Similarity (checks AI api)'
+    dir: 'Similarity'
+    args: ['builds', 'submit', '--config=cloudbuild.yaml', '.']
+
+  - name: 'gcr.io/cloud-builders/gcloud'
+    id: 'Build & Deploy Backend (checks Similarity)'
+    dir: 'DevOps_IA_Backend'
+    args: ['builds', 'submit', '--config=cloudbuild.yaml', '.']
+
+  - name: 'gcr.io/cloud-builders/gcloud'
+    id: 'Build & Deploy Frontend'
+    dir: 'Frontend'
+    args: ['builds', 'submit', '--config=cloudbuild.yaml', '.']
+
+timeout: 3600s

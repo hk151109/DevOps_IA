@@ -1,0 +1,4 @@
+steps:
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: ['builds', 'submit', '--config=cloudbuild.chain.yaml', '.']
+timeout: 3600s
