@@ -14,7 +14,7 @@ resource "google_compute_firewall" "allow_lb_healthchecks" {
 }
 
 resource "google_storage_bucket_iam_member" "frontend_public" {
-  bucket = var.frontend_bucket
+  bucket = google_storage_bucket.frontend.name
   role   = "roles/storage.objectViewer"
   member = "allUsers"
 }
