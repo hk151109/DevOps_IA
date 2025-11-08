@@ -17,7 +17,7 @@ All services are wired into a single CI/CD workflow, ensuring seamless deploymen
 
 The flow starts when a developer pushes code to GitHub. This triggers **Google Cloud Build**, which builds, tests, and deploys each service to its respective target environment.  
 
-![Architecture Diagram](./53d28d50-77c6-437b-a9fe-07c7803eeb58.png)
+![Architecture Diagram](./arch.png)
 
 ---
 
